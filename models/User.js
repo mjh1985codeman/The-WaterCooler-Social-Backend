@@ -28,12 +28,14 @@ const UserSchema = new Schema(
         "Please use a valid email address",
       ],
     },
+    //array of _id values referencing the Thought model
     thoughts: [
       {
         type: Schema.Types.ObjectId,
         ref: "Thought",
       },
     ],
+    //array of _id values self referencing (user model).
     friends: [
       {
         type: Schema.Types.ObjectId,
