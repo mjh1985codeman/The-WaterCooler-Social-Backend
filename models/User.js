@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
 
 //validation successful.
 let validateEmail = function (email) {
