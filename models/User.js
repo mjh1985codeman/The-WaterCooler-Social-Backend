@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
+//validation successful.
 let validateEmail = function (email) {
   let regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   return regex.test(email);
