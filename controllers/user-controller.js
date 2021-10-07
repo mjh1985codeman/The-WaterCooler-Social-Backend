@@ -21,7 +21,6 @@ const userController = {
   // get one user by id.
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
-      //how do I also populate the thoughts as well?
       .populate({
         path: "thoughts",
         select: "-__v",
@@ -66,7 +65,7 @@ const userController = {
   addFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.id },
-      { $push: { friends: params.friendId } },
+      { $addToSet: { friends: params.friendId } },
       { new: true }
     )
       .then((dbUserData) => {
