@@ -6,7 +6,7 @@ const userController = {
     User.find({})
       //Does this populate even need to be done?
       .populate({
-        path: "friends",
+        path: "thoughts",
         select: "-__v",
       })
       .select("-__v")
@@ -23,7 +23,7 @@ const userController = {
     User.findOne({ _id: params.id })
       //how do I also populate the thoughts as well?
       .populate({
-        path: "friends",
+        path: "thoughts",
         select: "-__v",
       })
       .select("-__v")
