@@ -106,8 +106,8 @@ const userController = {
         //deleteMany to delete the users thoughts from the Thought Model.
         Thought.deleteMany({ username: dbUserData.username })
           .then(() => {
-            //   //Want to try and remove the user from any friends array they may be in as well.
-            User.updateMany({ $pull: { friends: { _id: params.id } } })
+            //deletes the deleted user from any other user's friends list.
+            User.updateMany({ $pull: { friends: params.id } })
               .then(() => {
                 res.json({
                   message: "Successfully deleted user and associated thoughts.",
