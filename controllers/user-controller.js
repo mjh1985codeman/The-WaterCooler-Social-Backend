@@ -103,12 +103,17 @@ const userController = {
           res.status(404).json({ message: "No user found with this id" });
           return;
         }
-        //delteMany
+        //deleteMany to delete the users thoughts from the Thought Model.
         Thought.deleteMany({ username: dbUserData.username })
           .then(() => {
-            res.json({
-              message: "User deleted along w/ associated thoughts",
-            });
+            //   //Want to try and remove the user from any friends array they may be in as well.
+            User.updateMany({ $pull: { friends: { _id: params.id } } })
+              .then(() => {
+                res.json({
+                  message: "Successfully deleted user and associated thoughts.",
+                });
+              })
+              .catch((err) => res.status(400).json(err));
           })
           .catch((err) => res.status(400).json(err));
       })
