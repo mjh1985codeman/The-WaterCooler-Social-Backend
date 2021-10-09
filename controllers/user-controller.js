@@ -103,10 +103,11 @@ const userController = {
           res.status(404).json({ message: "No user found with this id" });
           return;
         }
-        //deleteMany to delete the users thoughts from the Thought Model.
+        //deleteMany to delete the users thoughts from the Thought Model where the Thought's username
+        //matches that of the deleted user (username: dbUserData.username).
         Thought.deleteMany({ username: dbUserData.username })
           .then(() => {
-            //deletes the deleted user from any other user's friends list.
+            //pulls the deleted user from any other user's friends list based on the id.
             User.updateMany({ $pull: { friends: params.id } })
               .then(() => {
                 res.json({

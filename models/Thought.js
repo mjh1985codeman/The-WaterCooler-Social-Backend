@@ -44,7 +44,7 @@ const ThoughtSchema = new Schema(
       default: Date.now,
       get: (createdAtVal) => dateFormat(createdAtVal),
     },
-    //How should we reference which user is creating the thought?
+    //Would like to add some verification here to verify that the username exists.
     username: {
       type: String,
       required: true,
